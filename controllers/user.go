@@ -56,3 +56,31 @@ func LoginUser(c *gin.Context) {
 
 	c.JSON(200, gin.H{"token": tokenString})
 }
+
+func UpdateUser(c *gin.Context) {
+	db := database.InitDb()
+
+	var user models.User
+	if err := c.ShouldBindJSON(&user); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+	db.Save(&user)
+
+	c.JSON(200, gin.H{"message": "User updated successfully"})
+}
+
+func DeleteUser(c *gin.Context) {
+	db := database.InitDb()
+
+	var user models.User
+	if err := c.ShouldBindJSON(&user); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+	db.Delete(&user)
+
+	c.JSON(200, gin.H{"message": "User deleted successfully"})
+}
