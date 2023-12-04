@@ -6,7 +6,7 @@ import (
 )
 
 func InitDb() *gorm.DB {
-	dsn := "user:password@tcp(localhost:5432)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "host=localhost user=postgres password=adminlan dbname=btpnsapidb sslmode=disable TimeZone=Asia/Shanghai"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {

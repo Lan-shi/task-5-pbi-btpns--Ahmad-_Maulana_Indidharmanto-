@@ -8,17 +8,11 @@ import (
 
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
-
+	// Public routes
 	r.POST("/users/register", controllers.RegisterUser)
 	r.POST("/users/login", controllers.LoginUser)
-	r.PUT("/users/update", controllers.UpdateUser)
-	r.DELETE("/users/delete", controllers.DeleteUser)
 
-	r.POST("/photos/upload", controllers.UploadPhoto)
-	r.GET("/photos/:id", controllers.GetPhoto)
-	r.PUT("/photos/update", controllers.UpdatePhoto)
-	r.DELETE("/photos/:id", controllers.DeletePhoto)
-
+	// Authenticated routes
 	authenticated := r.Group("/")
 	authenticated.Use(middlewares.AuthMiddleware())
 	{
