@@ -60,7 +60,6 @@ func LoginUser(c *gin.Context) {
 func UpdateUser(c *gin.Context) {
 	db := database.InitDb()
 
-	// Get user ID from JWT token
 	userID, _ := c.Get("user_id")
 
 	var user models.User
