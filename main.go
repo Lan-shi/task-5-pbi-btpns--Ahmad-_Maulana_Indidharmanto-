@@ -12,7 +12,6 @@ import (
 func main() {
 	db := database.InitDb()
 
-	// Automatically create the tables based on models
 	db.AutoMigrate(&models.User{}, &models.Photo{})
 
 	r := router.SetupRouter()
