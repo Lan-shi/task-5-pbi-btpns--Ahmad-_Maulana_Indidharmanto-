@@ -60,7 +60,15 @@ func LoginUser(c *gin.Context) {
 func UpdateUser(c *gin.Context) {
 	db := database.InitDb()
 
+	// Get user ID from JWT token
+	userID, _ := c.Get("user_id")
+
 	var user models.User
+	if err := db.Where("id = ?", userID).First(&user).Error; err != nil {
+		c.JSON(404, gin.H{"error": "User not found"})
+		return
+	}
+
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
