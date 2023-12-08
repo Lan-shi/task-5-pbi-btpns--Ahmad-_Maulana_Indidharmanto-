@@ -6,7 +6,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-var secretKey = []byte("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE3OTE5MDEsInVzZXJfaWQiOjd9.lp1lnTGyV2FYaU1PLFdWyK8aCO0j1EnhNwVPwllHT0k")
+var secretKey = []byte("")
 
 func GenerateToken(userID int) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
